@@ -1,4 +1,18 @@
 const s = (p) => {
+	class Flock {
+		constructor() {
+			this.lines = [];
+		}
+		run(){
+			for(const v of this.lines){
+				v.run(this.lines);
+			}
+		}
+		new_line(l){
+			this.lines.push(l);
+		}
+	}
+
 	class Line {
 		constructor(s_x,s_y,g_x,g_y,color,seed){
 			this.start_position = p.createVector(s_x,s_y);
