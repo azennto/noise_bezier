@@ -1,4 +1,30 @@
 const s = (p) => {
+	p.setup = () => {
+		p.createCanvas(p.windowWidth, p.windowHeight);
+		p.background(0);
+		flock = new Flock();
+
+		let rand_r = p.random(100,255);
+		let rand_g = p.random(100,255);
+		let rand_b = p.random(100,255);
+
+		for (let i = 0; i < 10; i++) {
+			let b = new Line(-10,p.height/2,p.width+10,p.height/2,p.color(p.noise(i*0.1)*rand_r , p.noise(i*0.1+100)*rand_g , p.noise(i*0.1+200)*rand_b),i);
+			flock.new_line(b);
+		}
+	};
+
+	p.draw = () => {
+		p.fill(0, 10);
+		p.rect(0, 0, p.width, p.height);
+
+		flock.run();
+	};
+
+	p.windowResized = () => {
+		p.resizeCanvas(p.windowWidth,p.windowHeight);
+	}
+
 	class Flock {
 		constructor() {
 			this.lines = [];
